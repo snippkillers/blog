@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+
+    <h1>Se connecter</h1>
+
+    <form action="{{ path('sign-in') }}" method="post">
+        {% if lastAuthenticationError %}
+        {{ dump(lastAuthenticationError)}}
+            <div class="alert alert-danger">{{ lastAuthenticationError.messageKey | trans(lastAuthenticationError.messageData, 'security') }}</div>
+        {% endif %}
+        <input value="{{ lastEmailAdress }}" type="email" name="_username" placeholder="Adresse mail">
+        <input type="password" name="_password" placeholder="mot de passe">
+        <input
+            type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}">
+        <button type="submit">Connexion</button>
+    </form>
+
+{% endblock %}

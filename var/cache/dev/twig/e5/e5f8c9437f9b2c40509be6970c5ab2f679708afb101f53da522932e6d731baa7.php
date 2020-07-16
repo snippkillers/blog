@@ -48,24 +48,79 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 <html>
     <head>
         <meta charset=\"UTF-8\">
+        <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/minty/bootstrap.min.css\">
+        <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.13.1/css/all.css\" integrity=\"sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q\" crossorigin=\"anonymous\">
+        <link rel=\"stylesheet\" href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/style.css"), "html", null, true);
+        echo "\"/>
         <title>";
-        // line 5
+        // line 8
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         ";
-        // line 6
+        // line 9
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 7
+        // line 10
         echo "    </head>
     <body>
+<header class=\"bg-primary\">
+<img src=\"\" alt=\"logo\">
+<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+
+  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+    <ul class=\"navbar-nav mr-auto\">
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"/\">Home</a>
+      </li>
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"articles\">Catégories</a>
+      </li>
+        <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"contact\">Nous contacter</a>
+      </li>
+    </ul>
+<ul>
+  ";
+        // line 29
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 29, $this->source); })()), "user", [], "any", false, false, false, 29)) {
+            // line 30
+            echo "                            <li>
+                                <a class=\"btn btn-primary\" href=\"";
+            // line 31
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sign-out");
+            echo "\"> <i class=\"fas fa-user\"></i> Déconnexion</a>
+                            </li>
+
+                        ";
+        } else {
+            // line 35
+            echo "                            <li>
+                                <a class=\"btn btn-primary\" href=\"";
+            // line 36
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sign-in");
+            echo "\"> <i class=\"fas fa-user\"></i> Connexion</a>
+                            </li>
+
+                        ";
+        }
+        // line 40
+        echo "</li></ul>
+  </div>
+</nav></header>
+
+
+    
         ";
-        // line 9
+        // line 46
         $this->displayBlock('body', $context, $blocks);
-        // line 10
+        // line 47
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 11
-        echo "    </body>
+        // line 48
+        echo "    
+
+    </body>
 </html>
 ";
         
@@ -76,7 +131,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 
     }
 
-    // line 5
+    // line 8
     public function block_title($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -95,7 +150,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 
     }
 
-    // line 6
+    // line 9
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -113,7 +168,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 
     }
 
-    // line 9
+    // line 46
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -131,7 +186,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 
     }
 
-    // line 10
+    // line 47
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -154,9 +209,14 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  135 => 10,  117 => 9,  99 => 6,  80 => 5,  68 => 11,  65 => 10,  63 => 9,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  190 => 47,  172 => 46,  154 => 9,  135 => 8,  121 => 48,  118 => 47,  116 => 46,  108 => 40,  101 => 36,  98 => 35,  91 => 31,  88 => 30,  86 => 29,  65 => 10,  63 => 9,  59 => 8,  55 => 7,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -165,14 +225,53 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 <html>
     <head>
         <meta charset=\"UTF-8\">
+        <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/minty/bootstrap.min.css\">
+        <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.13.1/css/all.css\" integrity=\"sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q\" crossorigin=\"anonymous\">
+        <link rel=\"stylesheet\" href=\"{{ asset('css/style.css') }}\"/>
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+<header class=\"bg-primary\">
+<img src=\"\" alt=\"logo\">
+<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+
+  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+    <ul class=\"navbar-nav mr-auto\">
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"/\">Home</a>
+      </li>
+      <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"articles\">Catégories</a>
+      </li>
+        <li class=\"nav-item\">
+        <a class=\"nav-link\" href=\"contact\">Nous contacter</a>
+      </li>
+    </ul>
+<ul>
+  {% if app.user %}
+                            <li>
+                                <a class=\"btn btn-primary\" href=\"{{ path('sign-out') }}\"> <i class=\"fas fa-user\"></i> Déconnexion</a>
+                            </li>
+
+                        {% else %}
+                            <li>
+                                <a class=\"btn btn-primary\" href=\"{{ path('sign-in') }}\"> <i class=\"fas fa-user\"></i> Connexion</a>
+                            </li>
+
+                        {% endif %}
+</li></ul>
+  </div>
+</nav></header>
+
+
+    
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+    
+
     </body>
 </html>
-", "base.html.twig", "/Applications/MAMP/htdocs/blog/blog/templates/base.html.twig");
+", "base.html.twig", "/Applications/MAMP/htdocs/blog/templates/base.html.twig");
     }
 }
