@@ -74,7 +74,10 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
         <a class=\"nav-link\" href=\"/\">Home</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"articles\">Catégories</a>
+        <a class=\"nav-link\" href=\"";
+        // line 22
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("list-articles");
+        echo "\">Catégories</a>
       </li>
         <li class=\"nav-item\">
         <a class=\"nav-link\" href=\"contact\">Nous contacter</a>
@@ -216,7 +219,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
 
     public function getDebugInfo()
     {
-        return array (  190 => 47,  172 => 46,  154 => 9,  135 => 8,  121 => 48,  118 => 47,  116 => 46,  108 => 40,  101 => 36,  98 => 35,  91 => 31,  88 => 30,  86 => 29,  65 => 10,  63 => 9,  59 => 8,  55 => 7,  47 => 1,);
+        return array (  193 => 47,  175 => 46,  157 => 9,  138 => 8,  124 => 48,  121 => 47,  119 => 46,  111 => 40,  104 => 36,  101 => 35,  94 => 31,  91 => 30,  89 => 29,  79 => 22,  65 => 10,  63 => 9,  59 => 8,  55 => 7,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -242,7 +245,7 @@ class __TwigTemplate_45079f93740d025941f33b66a7afc62dc8ff2c2404a78c53d1d040550c7
         <a class=\"nav-link\" href=\"/\">Home</a>
       </li>
       <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"articles\">Catégories</a>
+        <a class=\"nav-link\" href=\"{{ path('list-articles') }}\">Catégories</a>
       </li>
         <li class=\"nav-item\">
         <a class=\"nav-link\" href=\"contact\">Nous contacter</a>

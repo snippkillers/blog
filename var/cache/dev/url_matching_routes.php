@@ -15,6 +15,9 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/blog' => [[['_route' => 'blog', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\BlogController::home'], null, null, null, false, false, null]],
+        '/dashboard' => [[['_route' => 'dashboard', '_controller' => 'App\\Controller\\DashboardController::dashboard'], null, null, null, false, false, null]],
+        '/dashboard/list' => [[['_route' => 'list-articles', '_controller' => 'App\\Controller\\DashboardController::listArticle'], null, null, null, false, false, null]],
+        '/dashboard/create' => [[['_route' => 'create-article', '_controller' => 'App\\Controller\\DashboardController::create'], null, null, null, false, false, null]],
         '/sign-in' => [[['_route' => 'sign-in', '_controller' => 'App\\Controller\\UserController::signin'], null, null, null, false, false, null]],
         '/sign-up' => [[['_route' => 'sign-up', '_controller' => 'App\\Controller\\UserController::singUp'], null, null, null, false, false, null]],
         '/sign-out' => [[['_route' => 'sign-out', '_controller' => 'App\\Controller\\UserController::signOut'], null, null, null, false, false, null]],
@@ -36,6 +39,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
+                .'|/dashboard/(?'
+                    .'|view/([^/]++)(*:196)'
+                    .'|modified\\-article/([^/]++)(*:230)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -45,8 +52,10 @@ return [
         116 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        159 => [
-            [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
+        159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+        196 => [[['_route' => 'view-article', '_controller' => 'App\\Controller\\DashboardController::viewArticle'], ['id'], null, null, false, true, null]],
+        230 => [
+            [['_route' => 'modified-article', '_controller' => 'App\\Controller\\DashboardController::modified'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
