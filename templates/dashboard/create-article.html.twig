@@ -7,7 +7,7 @@
 
 <h1>Création d'un article</h1>
 
-{% if is_granted('ROLE_ADMIN') %}
+{% if is_granted('ROLE_BO') %}
 
 {{ form_start(formAddArticle) }}
 
@@ -22,25 +22,6 @@
 <button type="submit" class="btn btn-success"> Ajouter l'article </button>
 
 {{ form_end(formAddArticle) }}
-{% endif %}
-
-
-{% if is_granted('ROLE_USER') %}
-
-{{ form_start(formAddArticle) }}
-
-{{ form_row(formAddArticle.title, {'attr': {'placeholder': 'Nom du Produit'}}) }}
-
-{{ form_row(formAddArticle.content, {'attr': {'placeholder': 'Description du Produit'}}) }}
-
-{{ form_row(formAddArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
-
-{{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
-
-<button type="submit" class="btn btn-success"> Ajouter l'article </button>
-
-{{ form_end(formAddArticle) }}
-{% endif %}
 
 {% else %}
 
