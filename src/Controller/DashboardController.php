@@ -55,12 +55,13 @@ class DashboardController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $manager)
     {
-        $product = new article();
+        $article = new article();
 
         $form = $this->createFormBuilder($article)
+        ->add('image', TextType::class)
         ->add('title', TextType::class)
         ->add('content', TextType::class)
-        ->add('image', TextType::class)
+        
         ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) { 
@@ -80,21 +81,21 @@ class DashboardController extends AbstractController
     public function modified(Request $request, int $id)
     {
 
-        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-        $form = $this->createFormBuilder($product)
+        $article = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $form = $this->createFormBuilder($article)
         ->add('title', TextType::class)
         ->add('content', TextType::class)
         ->add('image', TextType::class)
         ->getForm();
         $form->handleRequest($request);
-        dump($product);
+        dump($article);
         if ($form->isSubmitted() && $form->isValid()) { 
-            $this->getDoctrine()->getManager()->persist($product);
+            $this->getDoctrine()->getManager()->persist($article);
             $this->getDoctrine()->getManager()->flush(); 
             
-            return $this->redirectToRoute ('product_view', ['id'=> $product->getId()]);
+            return $this->redirectToRoute ('view-article', ['id'=> $article->getId()]);
         }
 
-        return $this->render('Product/modifedProduct.html.twig', [ 'formAddProduct' => $form->createView()]);
+        return $this->render('Product/modifed-article.html.twig', [ 'formAddArticle' => $form->createView()]);
     }
 }

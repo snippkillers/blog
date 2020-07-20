@@ -117,8 +117,8 @@ class __TwigTemplate_1e53e99b6c576ae9a62fe1cab298d7db89cbab52c229e082e914f676577
                             <p class=\"card-text\">Écrire un article</p>
                             <a href=\"";
             // line 26
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("view-article", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 26)]), "html", null, true);
-            echo "\" class=\"btn btn-primary lien\"><i class=\"fas fa-cart-plus\"></i>Lire l'article</a>
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create-article");
+            echo "\" class=\"btn btn-primary lien\">Écrire un article</a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ class __TwigTemplate_1e53e99b6c576ae9a62fe1cab298d7db89cbab52c229e082e914f676577
                             <a href=\"";
             // line 38
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("view-article", ["id" => twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 38)]), "html", null, true);
-            echo "\" class=\"btn btn-primary lien\"><i class=\"fas fa-cart-plus\"></i>Lire l'article</a>
+            echo "\" class=\"btn btn-primary lien\">Lire l'article</a>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@ class __TwigTemplate_1e53e99b6c576ae9a62fe1cab298d7db89cbab52c229e082e914f676577
                         <div class=\"\">
                             <h5 class=\"card-title\">{{ article.title }}</h5>
                             <p class=\"card-text\">Écrire un article</p>
-                            <a href=\"{{ path('view-article',{id: article.id}) }}\" class=\"btn btn-primary lien\"><i class=\"fas fa-cart-plus\"></i>Lire l'article</a>
+                            <a href=\"{{ path('create-article') }}\" class=\"btn btn-primary lien\">Écrire un article</a>
                         </div>
                     </div>
                 </div>
@@ -226,7 +226,7 @@ class __TwigTemplate_1e53e99b6c576ae9a62fe1cab298d7db89cbab52c229e082e914f676577
                         <div class=\"\">
                             <h5 class=\"card-title\">{{ article.title }}</h5>
                             <p class=\"card-text\">{{ article.content }}.</p>
-                            <a href=\"{{ path('view-article',{id: article.id}) }}\" class=\"btn btn-primary lien\"><i class=\"fas fa-cart-plus\"></i>Lire l'article</a>
+                            <a href=\"{{ path('view-article',{id: article.id}) }}\" class=\"btn btn-primary lien\">Lire l'article</a>
                         </div>
                     </div>
                 </div>
