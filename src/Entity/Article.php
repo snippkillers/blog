@@ -32,6 +32,12 @@ class Article
      */
     private $image;
 
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $class;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Article
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getClass(): ?string
+    {
+        return $this->class;
+    }
+
+    public function setClass(?string $class): self
+    {
+        $this->class = $class;
 
         return $this;
     }

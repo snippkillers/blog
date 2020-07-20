@@ -13,22 +13,21 @@
             <div class="row">
 
 
+<div class="col-md-12 content-filter-project">
+      <button class="btn-filter btn-color filter-button lien" data-filter="*"> Tous les articles </button>
+      <button class="btn-filter btn-color filter-button lien" data-filter=".Actualites">Actualités</button>
+      <button class="btn-filter btn-color filter-button lien" data-filter=".Voyage">Voyage</button>
+      <button class="btn-filter btn-color filter-button lien" data-filter=".Hightech">High-tech</button>
+      <button class="btn-filter btn-color filter-button lien" data-filter=".Loisirs">Loisirs</button>
+      <button class="btn-filter btn-color filter-button lien" data-filter=".Gossip">Gossip</button>
+
+      <hr style="background-color:white;">
+  </div>
+
 {% for article in articles %}
 
 
-<div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ article.image }}" class="card-img-top" alt="...">
-                        
-                        <div class="">
-                            <h5 class="card-title">{{ article.title }}</h5>
-                            <p class="card-text">Écrire un article</p>
-                            <a href="{{ path('create-article') }}" class="btn btn-primary lien">Écrire un article</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
+                <div class="col-md-4 {{ article.class }}">
                     <div class="card">
                         <img src="{{ article.image }}" class="card-img-top" alt="...">
                         
@@ -37,7 +36,31 @@
                             <p class="card-text">{{ article.content }}.</p>
                             <a href="{{ path('view-article',{id: article.id}) }}" class="btn btn-primary lien">Lire l'article</a>
                         </div>
+
+                           {% if app.user %}
+
+                       <div class="row">
+                           <div class="col-md-4">
+                           <a href="{{ path('modified-article',{id: article.id}) }}">
+                           <i class="fas fa-edit"></i>
+                           </a>
+                           
+                           </div>
+
+                              <div class="col-md-4">
+                           <i class="fas fa-eye"></i>
+                           </div>
+
+                              <div class="col-md-4">
+                           supprimer
+                           </div>
+                       </div>
+
+                       {% endif %}
                     </div>
+
+                    
+
                 </div>
 {% endfor %}
 
@@ -46,9 +69,6 @@
     </div>
 </section>
 
-<section>
- 
-</section>
 </main>
 
 {% endblock %}

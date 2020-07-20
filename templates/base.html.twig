@@ -44,7 +44,30 @@
 
     
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %} 
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+        <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+        
+
+        <script type="text/javascript">
+        var $grid = $('.end-content-project').isotope({
+        itemSelector: '.square-project',
+        layoutMode: 'fitRows',
+        });
+        
+        
+        $('.content-filter-project').on('click', 'button', function() {
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({
+        filter: filterValue
+      });
+    });
+
+    </script>
+
+        
+        {% endblock %}
     
 
     </body>

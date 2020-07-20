@@ -11,10 +11,14 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class UserController extends AbstractController
 {
@@ -48,6 +52,15 @@ class UserController extends AbstractController
         ->add('name', TextType::class)
         ->add('mdp', PasswordType::class)
         ->add('email')
+        ->add('role', ChoiceType::class, [
+            'choices' => [
+            'Administrateur' => 'ROLE_ADMIN',
+            'User' => 'ROLE_USER',
+            'Editeur' => 'ROLE_EDITOR',
+        ],
+        'expanded' => true,
+        'label' => 'Rôle' 
+        ])
         ->getForm();
         $singUp->handleRequest($request);
         dump($user);

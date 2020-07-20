@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+ {% block title %}Modifier un article{% endblock %}
+
+
+{% block body %}
+
+<h1>Modifier un article</h1>
+
+{{ form_start(formAddArticle) }}
+
+{{ form_row(formAddArticle.title, {'attr': {'placeholder': 'Nom du Produit'}}) }}
+
+{{ form_row(formAddArticle.content, {'attr': {'placeholder': 'Description du Produit'}}) }}
+
+{{ form_row(formAddArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
+
+{{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
+
+<button type="submit" class="btn btn-success">Mettre à jour </button>
+
+{{ form_end(formAddArticle) }}
+
+{% endblock %}

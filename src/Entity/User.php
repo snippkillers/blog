@@ -45,7 +45,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private $role = 'ROLE_USER';
+    private $role = 'ROLE_ADMIN';
 
     public function getId(): ?int
     {
@@ -93,7 +93,7 @@ class User implements UserInterface
         return $this->role;
     }
 
-    public function setRole(string $role): void
+    public function setRole(?string $role): void
     {
         $this->role = $role;
     }

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class DashboardController extends AbstractController
 {
@@ -49,8 +50,9 @@ class DashboardController extends AbstractController
         ]);
     }
 
-
+    
     /**
+     * @IsGranted("ROLE_BO")
      * @Route("/dashboard/create", name="create-article"))
      */
     public function create(Request $request, EntityManagerInterface $manager)
@@ -61,6 +63,7 @@ class DashboardController extends AbstractController
         ->add('image', TextType::class)
         ->add('title', TextType::class)
         ->add('content', TextType::class)
+        ->add('class', TextType::class)
         
         ->getForm();
         $form->handleRequest($request);
@@ -81,11 +84,12 @@ class DashboardController extends AbstractController
     public function modified(Request $request, int $id)
     {
 
-        $article = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
         $form = $this->createFormBuilder($article)
         ->add('title', TextType::class)
         ->add('content', TextType::class)
         ->add('image', TextType::class)
+        ->add('class', TextType::class)
         ->getForm();
         $form->handleRequest($request);
         dump($article);
@@ -96,6 +100,6 @@ class DashboardController extends AbstractController
             return $this->redirectToRoute ('view-article', ['id'=> $article->getId()]);
         }
 
-        return $this->render('Product/modifed-article.html.twig', [ 'formAddArticle' => $form->createView()]);
+        return $this->render('dashboard/modified-article.html.twig', [ 'formAddArticle' => $form->createView()]);
     }
 }
