@@ -5,21 +5,34 @@
 
 {% block body %}
 
+<section class="create-article">
+    <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau" />
 <h1>Création d'un article</h1>
 
 {% if is_granted('ROLE_BO') %}
 
-{{ form_start(formAddArticle) }}
+<div class="container-fuild">
+    <div class="row">
+        <div class="col-md-4 offset-md-1">
+        {{ form_start(formAddArticle) }}
 
-{{ form_row(formAddArticle.title, {'attr': {'placeholder': 'Nom du Produit'}}) }}
-
-{{ form_row(formAddArticle.content, {'attr': {'placeholder': 'Description du Produit'}}) }}
-
-{{ form_row(formAddArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
-
+<p>Nom de l'article</p>
+{{ form_row(formAddArticle.title, {'attr': {'placeholder': "Saissisez le titre de votre article"}}) }}
+<p>Image de l'article</p>
+{{ form_row(formAddArticle.image, {'attr': {'placeholder': "Lien de l'image"}}) }}
+<p>Catégories de l'article</p>
 {{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
+        </div>
 
-<button type="submit" class="btn btn-success"> Ajouter l'article </button>
+                <div class="col-md-5 offset-md-1">
+                <p>Description</p>
+{{ form_row(formAddArticle.content, {'attr': {'placeholder': "Résumé de l'article"}}) }}
+<button type="submit" class="btn btn-secondary"> Enregistrer dans brouillons</button>
+<button type="submit" class="btn btn-success"> Publier l'article </button>
+        </div>
+    </div>
+</div>
+
 
 {{ form_end(formAddArticle) }}
 
@@ -28,5 +41,8 @@
 <p>Vous n'avez pas l'accès</p>
 
 {% endif %}
+
+</section>
+
 
 {% endblock %}

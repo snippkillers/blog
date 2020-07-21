@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -64,9 +66,9 @@ class DashboardController extends AbstractController
         $article = new article();
 
         $form = $this->createFormBuilder($article)
-            ->add('image', TextType::class)
             ->add('title', TextType::class)
-            ->add('content', TextType::class)
+            ->add('image', TextType::class)
+            ->add('content', TextareaType::class)
             ->add('class', TextType::class)
 
             ->getForm();
@@ -90,6 +92,7 @@ class DashboardController extends AbstractController
     }
 
     /**
+     * @Security("is_granted('ROLE_EDITOR')")
      * @Route("/dashboard/modified-article/{id}", name="modified-article")
      */
     public function modified(Request $request, int $id)

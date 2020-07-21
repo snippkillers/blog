@@ -188,4 +188,80 @@ button,
   border-radius: 10px;
   color: white;
   font-weight: bold;
+  margin-top: 20px;
+}
+
+.modified-article input,
+.create-article input {
+  overflow: visible;
+  width: 100%;
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #969696;
+}
+
+textarea {
+  widows: 90% !important;
+  padding: 10px;
+}
+
+label {
+  display: none;
+}
+
+.create-article p {
+  text-align: left;
+  font-weight: bold;
+  color: #76c2ad;
+}
+
+.create-article input {
+  margin-bottom: 30px;
+}
+
+#form_content {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+}
+
+.card {
+  text-align: justify;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.card p {
+  font-size: 11px;
+  height: 100px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.article h5 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #76c2ad;
+}
+
+.article i {
+  font-size: 18px;
+}
+
+.row-article {
+  text-align: center;
+}
+
+.fa-eye {
+  color: #bcbcbc;
+}
+
+.fa-edit {
+  color: #23b769;
+}
+
+.fa-trash-alt {
+  color: #c61212;
 }

@@ -1,51 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des produits{% endblock %}
+{% block title %}
+  Liste des produits
+{% endblock %}
 
 {% block body %}
-
-    <main>
-        <section>
-            <div class="card-section">
-                <div class="container">
-                    <h2>L'article</h2>
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="img-article">
-                                <img src="{{ article.image }}" class="card-img-top" alt="...">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="card card-descript">
-                                <div class="card-body">
-                                    <h2 class="card-title">{{ article.title }}</h2>
-                                    <p class="card-text">{{ article.content }}.</p>
-
-                                    
-                                    
-
-                                    <a
-                                        href="{{ path('modified-article',{id: article.id}) }}"
-                                        class="btn btn-primary lien">
-                                        Modifier l'article</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+  <main>
+    <section>
+      <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau" />
+      <div class="card-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="img-article">
+                <h2 class="card-title">
+                  {{ article.title }}
+                </h2>
+                <img src="{{ article.image }}" class="card-img-top" alt="..." />
+              </div>
             </div>
-        </section>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Avis des utilisateurs</h3>
+            <div class="col-md-12">
+              <div class="card card-descript">
+                <div class="card-body">
+                  <p class="card-text">
+                    {{ article.content }}.
+                  </p>
 
-                        {# {{ form_start(formAddcomment) }}
+                  <a href="{{
+                    path(
+                      'modified-article',
+                      {
+                        id: article.id
+                      }
+                    )
+                    }}"
+                    class="btn btn-primary lien">
+                    Modifier l'article
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            {# {{ form_start(formAddcomment) }}
 
                         {{ form_row(formAddcomment.title, {'attr': {'placeholder': 'Nom du Produit'}}) }}
 
@@ -57,13 +62,9 @@
                         {{ form_end(formAddcomment) }}
 
                     {% endblock %} #}
-
-                </div>
-            </div>
+          </div>
         </div>
-
+      </div>
     </section>
-
-</main>
-
+  </main>
 {% endblock %}
