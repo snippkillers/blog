@@ -10,10 +10,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use FOS\CKEditorBundle\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use App\Entity\ArticleComment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -72,6 +74,43 @@ class DashboardController extends AbstractController
     }
 
     /**
+     * @Security("is_granted('ROLE_USER')")
+     * @Route("/dashboard/comment/{id}/create", name="create-comment-article")
+     */
+    public function createComment(Article $article, Request $request)
+    {
+        $comment = new ArticleComment();
+        $comment->setArticle($article);
+
+        $form = $this->createFormBuilder($comment)
+            ->add('content', TextareaType::class)
+            ->add('add', SubmitType::class, [
+                'label' => 'Publier',
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setCreatedAt(new \DateTime());
+            $comment->setUser($this->getUser());
+            $this->getDoctrine()
+                ->getManager()
+                ->persist($comment);
+            $this->getDoctrine()
+                ->getManager()
+                ->flush();
+
+            return $this->redirectToRoute('view-article', [
+                'id' => $article->getId(),
+            ]);
+        }
+
+        return $this->render('Dashboard/create-comment.html.twig', [
+            'commentForm' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Security("is_granted('ROLE_BO')")
      * @Route("/dashboard/create", name="create-article"))
      */
@@ -84,7 +123,6 @@ class DashboardController extends AbstractController
             ->add('image', TextType::class)
             ->add('content', TextareaType::class)
             ->add('class', TextType::class)
-
             ->getForm();
         $form->handleRequest($request);
         dump($article);
@@ -125,7 +163,7 @@ class DashboardController extends AbstractController
             ->find($id);
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class)
-            ->add('content', TextType::class)
+            ->add('content', CKEditorType::class)
             ->add('image', TextType::class)
             ->add('class', TextType::class)
             ->getForm();

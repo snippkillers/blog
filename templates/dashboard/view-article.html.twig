@@ -46,25 +46,32 @@
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            {# {{ form_start(formAddcomment) }}
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <h3>
+          Commentaires :
+        </h3>
+        <a href="{{
+          path(
+            'create-comment-article',
+            {
+              id: article.id
+            }
+          )
+          }}">
+          Ajouter un commentaire
+        </a>
+      </div>
 
-                        {{ form_row(formAddcomment.title, {'attr': {'placeholder': 'Nom du Produit'}}) }}
-
-                        {{ form_row(formAddcomment.content, {'attr': {'placeholder': 'Description du Produit'}}) }}
-
-                        <button type="submit" class="btn btn-success">Laisser un avis
-                        </button>
-
-                        {{ form_end(formAddcomment) }}
-
-                    {% endblock %} #}
+      {% for comment in article.comments %}
+        <div class="col-md-12 mt-2">
+          <div class="card">
+            <div class="card-body">
+              {{ comment.content }}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      {% endfor %}
+    </div>
   </main>
 {% endblock %}

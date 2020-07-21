@@ -42,6 +42,18 @@ class Article
      */
     private $published = false;
 
+    /**
+     * @var ArrayCollection|ArticleComment[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\ArticleComment", mappedBy="article", cascade={"remove"})
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +115,18 @@ class Article
     public function setPublished(?bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function setComments(ArticleComment $comments): self
+    {
+        $this->comments = $comments;
 
         return $this;
     }
