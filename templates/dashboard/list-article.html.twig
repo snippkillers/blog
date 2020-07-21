@@ -84,7 +84,14 @@
                         
 
                         <div class="col-md-4">
-                          <a href=""><i class="fas fa-trash-alt"></i></a>
+                          <a href="{{
+                              path(
+                                'delete-article',
+                                {
+                                  id: article.id
+                                }
+                              )
+                              }}"><i class="fas fa-trash-alt"></i></a>
                         </div>
                       {% endif %}
                     {% else %}

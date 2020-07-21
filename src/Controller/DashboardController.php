@@ -125,4 +125,20 @@ class DashboardController extends AbstractController
             'formAddArticle' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Security("is_granted('ROLE_EDITOR')")
+     * @Route("/dashboard/delete-article/{id}", name="delete-article")
+     */
+    public function delete(Request $request, Article $article)
+    {
+        $this->getDoctrine()
+            ->getManager()
+            ->remove($article);
+        $this->getDoctrine()
+            ->getManager()
+            ->flush();
+
+        return $this->redirectToRoute('list-articles');
+    }
 }
