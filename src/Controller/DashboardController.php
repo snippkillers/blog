@@ -38,8 +38,22 @@ class DashboardController extends AbstractController
     {
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
-            ->findAll();
+            ->findBy(['published' => true]);
         return $this->render('dashboard/list-article.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/drafts", name="drafts-articles")
+     */
+
+    public function draftsArticle()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findBy(['published' => false]);
+        return $this->render('dashboard/drafts-article.html.twig', [
             'articles' => $articles,
         ]);
     }
@@ -73,7 +87,11 @@ class DashboardController extends AbstractController
 
             ->getForm();
         $form->handleRequest($request);
+        dump($article);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($request->request->get('published')) {
+                $article->setPublished(true);
+            }
             $this->getDoctrine()
                 ->getManager()
                 ->persist($article);
@@ -81,7 +99,12 @@ class DashboardController extends AbstractController
                 ->getManager()
                 ->flush();
 
-            return $this->redirectToRoute('view-article', [
+            if ($request->request->get('published')) {
+                return $this->redirectToRoute('list-articles', [
+                    'id' => $article->getId(),
+                ]);
+            }
+            return $this->redirectToRoute('drafts-articles', [
                 'id' => $article->getId(),
             ]);
         }
@@ -109,6 +132,9 @@ class DashboardController extends AbstractController
         $form->handleRequest($request);
         dump($article);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($request->request->get('published')) {
+                $article->setPublished(true);
+            }
             $this->getDoctrine()
                 ->getManager()
                 ->persist($article);
@@ -116,7 +142,12 @@ class DashboardController extends AbstractController
                 ->getManager()
                 ->flush();
 
-            return $this->redirectToRoute('view-article', [
+            if ($request->request->get('published')) {
+                return $this->redirectToRoute('list-articles', [
+                    'id' => $article->getId(),
+                ]);
+            }
+            return $this->redirectToRoute('drafts-articles', [
                 'id' => $article->getId(),
             ]);
         }

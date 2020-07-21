@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Liste des articles
+{% endblock %}
+
+{% block body %}
+  <main>
+    <section>
+      <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau" />
+      <div class="card-section">
+        <div class="container">
+          <h2>
+            Brouillons
+          </h2>
+          <div class="row">
+           
+
+            {% for article in articles %}
+            <div class="col-md-4 article {{ article.class }}">
+                <div class="card">
+                <img src="{{ article.image }}"
+                    class="card-img-top"
+                    alt="..." />
+
+                <div class="">
+                    <h5 class="card-title">
+                    {{ article.title }}
+                    </h5>
+                    <p class="card-text">
+                    {{ article.content }}.
+                    </p>
+
+                    
+                    <div class="row row-article">
+
+                    {% if app.user %}
+                    {% if is_granted('ROLE_EDITOR') %}
+                        <div class="col-md-4">
+                            <a href="{{path('view-article',{id: article.id})}}">
+                              <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+
+                          <div class="col-md-4">
+                            <a href="{{
+                              path(
+                                'modified-article',
+                                {
+                                  id: article.id
+                                }
+                              )
+                              }}">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                          </div>
+                        
+
+                        <div class="col-md-4">
+                          <a href="{{
+                              path(
+                                'delete-article',
+                                {
+                                  id: article.id
+                                }
+                              )
+                              }}"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                      {% endif %}
+                    {% else %}
+
+
+                        <div class="col-md-12">
+                        <a href="{{
+                        path(
+                          'view-article',
+                          {
+                            id: article.id
+                          }
+                        )
+                        }}"
+                        class="btn btn-primary lien">
+                        Lire l'article
+                      </a>
+                        </div>
+                    {% endif %}
+                  </div>
+                  
+                </div>
+                
+              </div>
+            
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

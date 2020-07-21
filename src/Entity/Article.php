@@ -32,11 +32,15 @@ class Article
      */
     private $image;
 
-
     /**
      * @ORM\Column(type="text")
      */
     private $class;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published = false;
 
     public function getId(): ?int
     {
@@ -87,6 +91,18 @@ class Article
     public function setClass(?string $class): self
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }
