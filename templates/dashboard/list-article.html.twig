@@ -6,7 +6,7 @@
 
 {% block body %}
   <main>
-    <section>
+    <section class="">
       <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau" />
       <div class="card-section">
         <div class="container">
@@ -46,11 +46,23 @@
             {% for article in articles %}
             <div class="col-md-4 article {{ article.class }}">
                 <div class="card">
-                <img src="{{ article.image }}"
+                <a href="{{
+                        path(
+                          'view-article',
+                          {
+                            id: article.id
+                          }
+                        )
+                        }}">
+                              <div class="block-image">
+                  <img src="{{ article.image }}"
                     class="card-img-top"
                     alt="..." />
+                </div>
+                    
+                     </a>
 
-                <div class="">
+                <div class="list-article">
                     <h5 class="card-title">
                     {{ article.title }}
                     </h5>

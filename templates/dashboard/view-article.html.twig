@@ -6,27 +6,14 @@
 
 {% block body %}
   <main>
-    <section>
+    <section class="view-article">
       <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau" />
       <div class="card-section">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <div class="img-article">
-                <h2 class="card-title">
-                  {{ article.title }}
-                </h2>
-                <img src="{{ article.image }}" class="card-img-top" alt="..." />
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="card card-descript">
-                <div class="card-body">
-                  <p class="card-text">
-                    {{ article.content }}.
-                  </p>
-
+              {% if app.user %}
+                {% if is_granted('ROLE_BO') %}
                   <a href="{{
                     path(
                       'modified-article',
@@ -38,6 +25,28 @@
                     class="btn btn-primary lien">
                     Modifier l'article
                   </a>
+                {% endif %}
+              {% else %}
+
+              {% endif %}
+              <div class="img-article">
+                <h2 class="card-title">
+                  {{ article.title }}
+                </h2>
+                <div class="image">
+                  <img src="{{ article.image }}"
+                    class="card-img-top"
+                    alt="..." />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="card card-descript">
+                <div class="card-body">
+                  <p class="">
+                    {{ article.content }}.
+                  </p>
                 </div>
               </div>
             </div>
@@ -65,8 +74,8 @@
 
       {% for comment in article.comments %}
         <div class="col-md-12 mt-2">
-          <div class="card">
-            <div class="card-body">
+          <div class="card comment">
+            <div class="card-body comment">
               {{ comment.content }}
             </div>
           </div>

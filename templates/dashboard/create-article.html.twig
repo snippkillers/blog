@@ -18,8 +18,12 @@
 
 <p>Nom de l'article</p>
 {{ form_row(formAddArticle.title, {'attr': {'placeholder': "Saissisez le titre de votre article"}}) }}
+<div class="form-group">
 <p>Image de l'article</p>
 {{ form_row(formAddArticle.image, {'attr': {'placeholder': "Lien de l'image"}}) }}
+
+</div>
+
 <p>Catégories de l'article</p>
 {{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
         </div>

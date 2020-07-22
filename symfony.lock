@@ -93,6 +93,22 @@
             "config/packages/fos_ckeditor.yaml"
         ]
     },
+    "kms/froala-editor-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "666a78d430cecebe61a1990d7b8f638e45b2eeab"
+        },
+        "files": [
+            "config/packages/kms_froala_editor.yaml",
+            "config/routes/kms_froala_editor.yaml"
+        ]
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.4"
+    },
     "monolog/monolog": {
         "version": "2.1.0"
     },
@@ -518,6 +534,9 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.8.0"

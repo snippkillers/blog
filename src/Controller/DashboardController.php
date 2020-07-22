@@ -18,6 +18,7 @@ use App\Entity\Article;
 use App\Entity\ArticleComment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Form\EditorType;
 
 class DashboardController extends AbstractController
 {
@@ -118,12 +119,7 @@ class DashboardController extends AbstractController
     {
         $article = new article();
 
-        $form = $this->createFormBuilder($article)
-            ->add('title', TextType::class)
-            ->add('image', TextType::class)
-            ->add('content', TextareaType::class)
-            ->add('class', TextType::class)
-            ->getForm();
+        $form = $this->createForm(EditorType::class, $article);
         $form->handleRequest($request);
         dump($article);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -163,7 +159,7 @@ class DashboardController extends AbstractController
             ->find($id);
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class)
-            ->add('content', CKEditorType::class)
+            ->add('content', TextType::class)
             ->add('image', TextType::class)
             ->add('class', TextType::class)
             ->getForm();

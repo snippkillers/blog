@@ -8,6 +8,10 @@ body {
   text-align: center;
 }
 
+section {
+  margin-bottom: 20px;
+}
+
 .logo {
   width: 180px;
   margin-top: 20px;
@@ -38,6 +42,7 @@ li {
   width: 100%;
   min-height: 100vh;
   flex-direction: column;
+  z-index: 2000;
 }
 
 .dashboard {
@@ -233,7 +238,7 @@ label {
   margin-bottom: 30px;
 }
 
-.card p {
+.card-text {
   font-size: 11px;
   height: 100px;
   overflow: hidden;
@@ -241,9 +246,10 @@ label {
 }
 
 .article h5 {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: bold;
   color: #76c2ad;
+  margin-top: 5px;
 }
 
 .article i {
@@ -264,4 +270,20 @@ label {
 
 .fa-trash-alt {
   color: #c61212;
+}
+
+.bg-primary,
+.bg-primary a {
+  color: white !important;
+}
+
+.comment {
+  width: 70%;
+  padding: 0.55rem 1rem;
+  margin: 5px auto;
+}
+
+.block-image {
+  height: 205px !important;
+  overflow: hidden !important;
 }
