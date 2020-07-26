@@ -1,29 +1,55 @@
 {% extends 'base.html.twig' %}
 
- {% block title %}Modifier un article{% endblock %}
-
+{% block title %}Modifier un article{% endblock %}
 
 {% block body %}
 
-<h1>Modifier un article</h1>
+    <section class="create-article modified-article">
+        <img src="{{ asset('img/bandeau.svg') }}" alt="bandeau"/>
+        <h1>Modification d'un article</h1>
 
-<section class="modified-article">
-{{ form_start(formAddArticle) }}
+        {% if is_granted('ROLE_BO') %}
 
-{{ form_row(formAddArticle.title, {'attr': {'placeholder': "Nom de l'article"}}) }}
-{{ form_row(formAddArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
-<div class="textarea">
-{{ form_row(formAddArticle.content, {'attr': {'placeholder': "Description de l'article"}}) }}
-</div>
+            <div class="container-fuild">
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        {{ form_start(formAddArticle) }}
 
-{{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
+                        <p>Nom de l'article</p>
+                        {{ form_row(formAddArticle.title, {'attr': {'placeholder': "Nom de l'article"}}) }}
 
-<button type="submit" class="btn btn-secondary"> Enregistrer dans brouillons</button>
-<button value="true" name="published" type="submit" class="btn btn-success"> Publier l'article </button>
+                        <p>Image de l'article</p>
+                        {{ form_row(formAddArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
 
-{{ form_end(formAddArticle) }}
+                        <p>Catégories de l'article</p>
+                    {{ form_row(formAddArticle.class, {'attr': {'placeholder': "Catégorie de l'article"}}) }}
+                    </div>
+
+
+                <div class="col-md-5 offset-md-1">
+                    <p>Description</p>
+                    {{ form_row(formAddArticle.content, {'attr': {'placeholder': "Résumé de l'article"}}) }}
+                    
+                    <button type="submit" class="btn btn-secondary">
+                        Enregistrer dans brouillons</button>
+                    <button value="true" name="published" type="submit" class="btn btn-success">
+                        Publier l'article
+                    </button>
+                </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        {{ form_end(formAddArticle) }}
+
+    {% else %}
+
+        <p>Vous n'avez pas l'accès</p>
+
+    {% endif %}
 
 </section>
-
 
 {% endblock %}

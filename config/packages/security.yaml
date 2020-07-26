@@ -7,7 +7,7 @@ security:
         property: email
 
   encoders:
-    Symfony\Component\Security\Core\User\User: "auto"
+    Symfony\Component\Security\Core\User\User: 'auto'
     App\Entity\User:
       algorithm: auto
 
@@ -39,7 +39,8 @@ security:
   #- { path: ^/editor, roles: ROLE_EDITOR }
 
   role_hierarchy:
-    ROLE_USER: []
+    ROLE_MODERATOR: []
+    ROLE_USER: [ROLE_MODERATOR]
     ROLE_BO: [ROLE_USER]
     ROLE_EDITOR: [ROLE_BO]
     ROLE_ADMIN: [ROLE_EDITOR]

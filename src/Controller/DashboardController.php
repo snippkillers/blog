@@ -19,6 +19,7 @@ use App\Entity\ArticleComment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Form\EditorType;
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
 
 class DashboardController extends AbstractController
 {
@@ -159,9 +160,10 @@ class DashboardController extends AbstractController
             ->find($id);
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class)
-            ->add('content', TextType::class)
+            ->add('content', FroalaEditorType::class)
             ->add('image', TextType::class)
             ->add('class', TextType::class)
+            ->add('published')
             ->getForm();
         $form->handleRequest($request);
         dump($article);
