@@ -113,6 +113,25 @@ class DashboardController extends AbstractController
     }
 
     /**
+     * @Security("is_granted('ROLE_MODERATOR')")
+     * @Route("/dashboard/comment/{id}", name="delete-commit-article")
+     */
+
+    public function deleteComment(Request $request, Article $article)
+    {
+        $this->getDoctrine()
+            ->getManager()
+            ->remove($comment);
+        $this->getDoctrine()
+            ->getManager()
+            ->flush();
+
+        return $this->redirectToRoute('dashboard/view-article.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+    /**
      * @Security("is_granted('ROLE_BO')")
      * @Route("/dashboard/create", name="create-article"))
      */
